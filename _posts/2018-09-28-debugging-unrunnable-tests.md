@@ -15,7 +15,7 @@ of course remember to remove it before committing (!)
 
 Before running the debugger I had added a ```Console.Writeline``` statement to output the sql statement I needed to see.
 Strangely enough, when it output to the console, it looked strangely chopped up
-```SQL
+```sql
 WITH [cte] AS
    ( SELECT BucketId, StreamId, StreamIdOriginal, StreamRevision, CommitId, CommitSequence, CommitStamp, CheckpointNumber, Headers, Payload
 ) AS [row] FROM CommitsORDER BY CheckpointNumber
@@ -36,7 +36,7 @@ SELECT *
 
 debugging showed the expected string
 
-```SQL
+```sql
 WITH [cte] AS
    ( SELECT BucketId, StreamId, StreamIdOriginal, StreamRevision, CommitId, CommitSequence, CommitStamp, CheckpointNumber, Headers, Payload
   , ROW_NUMBER() OVER (ORDER BY CheckpointNumber 
