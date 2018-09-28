@@ -10,7 +10,9 @@ quick-n-dirty solution: wait for debugger to attach directly in the test
 while(!Debugger.IsAttached) Thread.Sleep(100);
 ```
 of course remember to remove it before committing (!)
-________
+
+---------------------------------------------------------
+
 Before running the debugger I had added a ```Console.Writeline``` statement to output the sql statement I needed to see.
 Strangely enough, when it output to the console, it looked strangely chopped up
 ```SQL
