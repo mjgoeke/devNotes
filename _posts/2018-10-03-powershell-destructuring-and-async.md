@@ -1,6 +1,6 @@
 ---
 layout: post
-title: more powershell
+title: Powershell assignment destructuring, async, and blocks
 ---
 
 Powershell supports destructuring assignments
