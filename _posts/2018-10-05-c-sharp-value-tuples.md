@@ -5,7 +5,7 @@ title: C# value tuples and destructuring
 
 Named tuples have full-fledged support in C#
 
-```c
+```c#
 //verbose
 //IEnumerable<ValueTuple<double, double>> coordinates()
 
@@ -24,7 +24,7 @@ IEnumerable<(double x, double y)> coordinates()
 (double x, double y) coordinate() => coordinates().First();
 ```
 They can be consumed in neat ways
-```c
+```c#
 var point = coordinate();  //point.x and point.y
 //or
 var (x, y) = coordinate();
@@ -35,7 +35,7 @@ foreach (var (x, y) in coordinates()) { /* ... */ }
 ```
 and although the value names are given, you can destructure them into context specific names
 e.g.
-```c
+```c#
 foreach (var (enemyX, enemyY) in enemy.coordinates()) { /* ... */ }
 ```
 
