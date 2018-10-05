@@ -38,7 +38,3 @@ e.g.
 ```c#
 foreach (var (enemyX, enemyY) in enemy.coordinates()) { /* ... */ }
 ```
-
-
-_as an aside, C# syntax highlighting isn't supported by this setup so I'm using c instead_ :-(  
-(_setup is default githubpages: Jekyll + kramdown + coderay_)
