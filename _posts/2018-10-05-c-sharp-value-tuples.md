@@ -5,7 +5,7 @@ title: C# value tuples and destructuring
 
 Named tuples have full-fledged support in C#
 
-```C++
+```C
 //verbose
 //IEnumerable<ValueTuple<double, double>> coordinates()
 
@@ -24,7 +24,7 @@ IEnumerable<(double x, double y)> coordinates()
 (double x, double y) coordinate() => coordinates().First();
 ```
 They can be consumed in neat ways
-```C++
+```C
 var point = coordinate();  //point.x and point.y
 //or
 var (x, y) = coordinate();
@@ -35,10 +35,10 @@ foreach (var (x, y) in coordinates()) { /* ... */ }
 ```
 and although the value names are given, you can destructure them into context specific names
 e.g.
-```C++
+```C
 foreach (var (enemyX, enemyY) in enemy.coordinates()) { /* ... */ }
 ```
 
 
-_as an aside, C# syntax highlighting isn't supported by this setup so I'm using c++ instead_ :confused:  
+_as an aside, C# syntax highlighting isn't supported by this setup so I'm using C instead_ :-(  
 (_setup is default githubpages: Jekyll + kramdown + coderay_)
