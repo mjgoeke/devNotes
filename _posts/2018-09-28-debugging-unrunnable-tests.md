@@ -34,7 +34,7 @@ SELECT *
                  AND @Limit + @Skip;
 ```
 
-debugging showed the expected string
+fortunately debugging showed the expected string
 
 ```sql
 WITH [cte] AS
@@ -56,5 +56,4 @@ SELECT *
                  AND @Limit + @Skip;
 ```
 
-I still don't know why this happened though...
-                 
+I've never seen this behavior before, and I still don't know why it happened...
