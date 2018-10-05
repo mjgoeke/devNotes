@@ -3,8 +3,8 @@ layout: post
 title: C# value tuples and destructuring
 ---
 
-Named tuples have full-fledged support in C#
-
+### Named tuples have full-fledged support in C#  
+methods returning value tuples:
 ```c#
 //verbose
 //IEnumerable<ValueTuple<double, double>> coordinates()
@@ -23,7 +23,9 @@ IEnumerable<(double x, double y)> coordinates()
 
 (double x, double y) coordinate() => coordinates().First();
 ```
-They can be consumed in neat ways
+---------------------------------------
+### Consuming returned value tuples  
+instantiating variables:
 ```c#
 var point = coordinate();  //point.x and point.y
 //or
@@ -34,23 +36,19 @@ foreach (var point in coordinates()) { /* ... */ }
 foreach (var (x, y) in coordinates()) { /* ... */ }
 ```
 and although the value names are given, you can destructure them into context specific names  
-e.g.
 ```c#
 foreach (var (enemyX, enemyY) in enemy.coordinates()) { /* ... */ }
 ```
-
-and aside from instantiation of variables, destructuring can be used to update existing variables  
-e.g.
-given a function like
+---------------------------------------
+modifying variables:  
 ```c#
+// given a function like
 (double x, double y) applyPhysics((double x, double y) point, params object[] otherObjects)
 {
-  //high tech physics formulas go here
-  return (point.x + 1, point.y + 1);
+  return (point.x + 1, point.y + 1); //high tech physics formulas go here
 }
-```
-destructuring can be used to update xPos and yPos like this
-```c#
+
+// destructuring can be used to update xPos and yPos like this
 var (xPos, yPos) = coordinate();
 (xPos, yPos) = applyPhysics((xPos, yPos), allEnemies);
 ```
