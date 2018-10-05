@@ -6,7 +6,7 @@ title: Debugging externally run tests
 I was working in the fork of NEventStore again today.
 I could only run the persistence unit tests via the psake scripts, externally, yet I was having trouble with a newly added test and wanted to be able to debug it.
 quick-n-dirty solution: wait for debugger to attach directly in the test
-```C#
+```c#
 while(!Debugger.IsAttached) Thread.Sleep(100);
 ```
 of course remember to remove it before committing (!)
