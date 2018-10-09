@@ -7,7 +7,7 @@ I worked munging around in wpf today.  There were several behaviors I wanted to 
 I ended up using attached properties for their ease of consumption.
 Behaviors are another option, but require some weird syntax to hook them up to controls, not to mention another one-off dependency (I don't know that there's a good official nuget dependency for `interactivity`.)  
 
-e.g. Cumbersome behaviors usage
+e.g. Cumbersome behaviors usage - <mark>don't do this!!!</mark>
 ```xml
 <!-- don't do this -->
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
