@@ -7,7 +7,7 @@ I worked munging around in wpf today.  There were several behaviors I wanted to 
 I ended up using attached properties for their ease of consumption.
 Behaviors are another option, but require some weird syntax to hook them up to controls, not to mention another one-off dependency (I don't know that there's a good official nuget dependency for `interactivity`.)  
 
-e.g. Cumbersome behaviors usage - <mark>let's not do it this way</mark>
+e.g. Attached Behaviors usage - <mark>(cumbersome, let's not do it this way)</mark>
 ```xml
     <!-- snip -->
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -18,6 +18,15 @@ e.g. Cumbersome behaviors usage - <mark>let's not do it this way</mark>
       <behaviors:TabOnEnter Value="true" />
     </i:Interaction.Behaviors>
   </TextBox>
+```
+
+
+Attached Property usage
+```xml
+    <!-- snip -->
+    xmlns:attachedProperties="clr-namespace:some.namespace.attachedProperties"
+    <!-- snip -->
+  <TextBox attachedProperties:TextBoxProperties.TabOnEnter="true"/>
 ```
 
 Attached Property implementation
@@ -44,12 +53,4 @@ public static class TextBoxProperties  // generally grouped by control type of s
       if (e.Key.Equals(Key.Enter))
         (sender as UIElement)?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
     }
-```
-
-Attached Property usage
-```xml
-    <!-- snip -->
-    xmlns:attachedProperties="clr-namespace:some.namespace.attachedProperties"
-    <!-- snip -->
-  <TextBox attachedProperties:TextBoxProperties.TabOnEnter="true"/>
 ```
