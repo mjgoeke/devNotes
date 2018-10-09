@@ -22,27 +22,27 @@ e.g. Cumbersome behaviors usage
 
 Attached Property implementation
 ```c#
-	public static class TextBoxProperties  // generally grouped by control type of set of behaviors 
-	{
-		public static readonly DependencyProperty TabOnEnterProperty = DependencyProperty.RegisterAttached("TabOnEnter", typeof(bool), typeof(TextBoxProperties), new UIPropertyMetadata(TabOnEnterPropertyChanged));
+public static class TextBoxProperties  // generally grouped by control type of set of behaviors 
+  {
+    public static readonly DependencyProperty TabOnEnterProperty = DependencyProperty.RegisterAttached("TabOnEnter", typeof(bool), typeof(TextBoxProperties), new UIPropertyMetadata(TabOnEnterPropertyChanged));
     
- 		public static bool GetTabOnEnter(DependencyObject obj) => (bool)obj.GetValue(TabOnEnterProperty);
-		public static void SetTabOnEnter(DependencyObject obj, bool value) => obj.SetValue(TabOnEnterProperty, value);
+    public static bool GetTabOnEnter(DependencyObject obj) => (bool)obj.GetValue(TabOnEnterProperty);
+    public static void SetTabOnEnter(DependencyObject obj, bool value) => obj.SetValue(TabOnEnterProperty, value);
 
-		static void TabOnEnterPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		{
-			var element = d as UIElement;
-			if (element == null) return;
+    static void TabOnEnterPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      var element = d as UIElement;
+      if (element == null) return;
 
-			if ((bool)e.NewValue) element.KeyDown += Keydown;
-			else element.KeyDown -= Keydown;
-		}
+      if ((bool)e.NewValue) element.KeyDown += Keydown;
+      else element.KeyDown -= Keydown;
+    }
 
-		static void Keydown(object sender, KeyEventArgs e)
-		{
-			if (e.Key.Equals(Key.Enter))
-          (sender as UIElement)?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-		}
+    static void Keydown(object sender, KeyEventArgs e)
+    {
+      if (e.Key.Equals(Key.Enter))
+        (sender as UIElement)?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+    }
 ```
 
 Attached Property usage
