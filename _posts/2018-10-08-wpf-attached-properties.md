@@ -32,11 +32,11 @@ public static class TextBoxProperties  // generally grouped by control type of s
 
     static void TabOnEnterPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-      var element = d as UIElement;
-      if (element == null) return;
-
-      if ((bool)e.NewValue) element.KeyDown += Keydown;
-      else element.KeyDown -= Keydown;
+      if (d is UIElement element)
+      {
+        if ((bool)e.NewValue) element.KeyDown += Keydown;
+        else element.KeyDown -= Keydown;
+      }
     }
 
     static void Keydown(object sender, KeyEventArgs e)
