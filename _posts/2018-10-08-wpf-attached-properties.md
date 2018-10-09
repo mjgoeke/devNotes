@@ -24,7 +24,8 @@ Attached Property implementation
 ```c#
 public static class TextBoxProperties  // generally grouped by control type of set of behaviors 
   {
-    public static readonly DependencyProperty TabOnEnterProperty = DependencyProperty.RegisterAttached("TabOnEnter", typeof(bool), typeof(TextBoxProperties), new UIPropertyMetadata(TabOnEnterPropertyChanged));
+    public static readonly DependencyProperty TabOnEnterProperty = DependencyProperty.RegisterAttached("TabOnEnter", typeof(bool),
+        typeof(TextBoxProperties), new UIPropertyMetadata(TabOnEnterPropertyChanged));
     
     public static bool GetTabOnEnter(DependencyObject obj) => (bool)obj.GetValue(TabOnEnterProperty);
     public static void SetTabOnEnter(DependencyObject obj, bool value) => obj.SetValue(TabOnEnterProperty, value);
