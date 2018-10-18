@@ -31,13 +31,16 @@ Attached Property usage
 
 Attached Property implementation
 ```c#
-public static class TextBoxProperties  // generally grouped by control type of set of behaviors 
+public static class AttachedProperties 
   {
-    public static readonly DependencyProperty TabOnEnterProperty = DependencyProperty.RegisterAttached("TabOnEnter", typeof(bool),
-        typeof(TextBoxProperties), new UIPropertyMetadata(TabOnEnterPropertyChanged));
+    //important: ownerType needs to be where the attached property lives (e.g. AttachedProperties in this case)
+    // otherwise if you try to bind to the value a runtime xaml parse exception will occur
+    public static readonly DependencyProperty TabOnEnterProperty = DependencyProperty.RegisterAttached(name: "TabOnEnter", propertyType: typeof(bool), ownerType: typeof(AttachedProperties), defaultMetadata: new UIPropertyMetadata(TabOnEnterPropertyChanged));
     
-    public static bool GetTabOnEnter(DependencyObject obj) => (bool)obj.GetValue(TabOnEnterProperty);
-    public static void SetTabOnEnter(DependencyObject obj, bool value) => obj.SetValue(TabOnEnterProperty, value);
+    //To make this attached property applicable to a specific set of control types, specify the type in the get/set properties
+    // e.g. TabOnEnter is applicable to any UIElement, this could have been, say, TextBox instead if we wanted it more specific
+    public static bool GetTabOnEnter(UIElement obj) => (bool)obj.GetValue(TabOnEnterProperty);
+    public static void SetTabOnEnter(UIElement obj, bool value) => obj.SetValue(TabOnEnterProperty, value);
 
     static void TabOnEnterPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
