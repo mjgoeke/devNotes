@@ -3,6 +3,9 @@ layout: post
 title: WPF Attached Properties
 ---
 
+###### 10/18/2018 updated to include ownerType bits and how to make attached property only available for a select set of control types
+--------------------------------------------------------------------------------------------------------------------------------------
+
 I worked munging around in wpf today.  There were several behaviors I wanted to attach to some templated controls.
 I ended up using attached properties for their ease of consumption.
 Behaviors are another option, but require some weird syntax to hook them up to controls, not to mention another one-off dependency (I don't know that there's a good official nuget dependency for `interactivity`.)  
@@ -33,9 +36,13 @@ Attached Property implementation
 ```c#
 public static class AttachedProperties 
   {
-    //important: ownerType needs to be where the attached property lives (e.g. AttachedProperties in this case)
-    // otherwise if you try to bind to the value a runtime xaml parse exception will occur
-    public static readonly DependencyProperty TabOnEnterProperty = DependencyProperty.RegisterAttached(name: "TabOnEnter", propertyType: typeof(bool), ownerType: typeof(AttachedProperties), defaultMetadata: new UIPropertyMetadata(TabOnEnterPropertyChanged));
+    public static readonly DependencyProperty TabOnEnterProperty = DependencyProperty.RegisterAttached(
+        name: "TabOnEnter", 
+        propertyType: typeof(bool), 
+// important: ownerType needs to be where the attached property lives (e.g. AttachedProperties in this case)
+// otherwise if you try to bind to the value a runtime xaml parse exception will occur
+        ownerType: typeof(AttachedProperties),
+        defaultMetadata: new UIPropertyMetadata(TabOnEnterPropertyChanged));
     
     //To make this attached property applicable to a specific set of control types, specify the type in the get/set properties
     // e.g. TabOnEnter is applicable to any UIElement, this could have been, say, TextBox instead if we wanted it more specific
