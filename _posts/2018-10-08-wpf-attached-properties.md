@@ -33,9 +33,7 @@ Attached Property usage
 ```
 
 Attached Property implementation
-###### notes:  
-###### <mark>ownerType</mark> needs to be where the attached property lives. If something like 'UIObject' is used, and you try to set the attached property value using a binding, you'll get an uncaught xaml parse exception at runtime that kills the application  
-###### <mark>argument type</mark> e.g. UIElement, of get/set property filters what control types this attached property applies to  
+###### notes: <br/><mark>ownerType</mark> needs to be where the attached property lives. If something like 'UIObject' is used, and you try to set the attached property value using a binding, you'll get an uncaught xaml parse exception at runtime that kills the application <br/><mark>argument type</mark> e.g. UIElement, of get/set property filters what control types this attached property applies to  
 ```c#
 public static class AttachedProperties 
   {
