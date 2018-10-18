@@ -10,7 +10,7 @@ I worked munging around in wpf today.  There were several behaviors I wanted to 
 I ended up using attached properties for their ease of consumption.
 Behaviors are another option, but require some weird syntax to hook them up to controls, not to mention another one-off dependency (I don't know that there's a good official nuget dependency for `interactivity`.)  
 
-e.g. Attached Behaviors usage - <mark>(cumbersome, let's not do it this way)</mark>
+e.g. Attached Behaviors usage - (cumbersome, let's not do it this way)
 ```xml
     <!-- snip -->
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -33,34 +33,35 @@ Attached Property usage
 ```
 
 Attached Property implementation
+###### notes:  
+###### <mark>ownerType</mark> needs to be where the attached property lives. If something like 'UIObject' is used, and you try to set the attached property value using a binding, you'll get an uncaught xaml parse exception at runtime that kills the application  
+###### <mark>argument type</mark> e.g. UIElement, of get/set property filters what control types this attached property applies to  
 ```c#
 public static class AttachedProperties 
   {
     public static readonly DependencyProperty TabOnEnterProperty = DependencyProperty.RegisterAttached(
         name: "TabOnEnter", 
         propertyType: typeof(bool), 
-// important: ownerType needs to be where the attached property lives (e.g. AttachedProperties in this case)
-// otherwise if you try to bind to the value a runtime xaml parse exception will occur
         ownerType: typeof(AttachedProperties),
         defaultMetadata: new UIPropertyMetadata(TabOnEnterPropertyChanged));
     
-    //To make this attached property applicable to a specific set of control types, specify the type in the get/set properties
-    // e.g. TabOnEnter is applicable to any UIElement, this could have been, say, TextBox instead if we wanted it more specific
     public static bool GetTabOnEnter(UIElement obj) => (bool)obj.GetValue(TabOnEnterProperty);
     public static void SetTabOnEnter(UIElement obj, bool value) => obj.SetValue(TabOnEnterProperty, value);
 
-    static void TabOnEnterPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      if (d is UIElement element)
-      {
-        if ((bool)e.NewValue) element.KeyDown += Keydown;
-        else element.KeyDown -= Keydown;
-      }
-    }
+	    static void TabOnEnterPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	    {
+	        var element = d as UIElement;
+	        if (element == null) return;
+            if ((bool) e.NewValue) element.KeyUp += tabOnEnterKeyUp;
+            else element.KeyUp -= tabOnEnterKeyUp;
+	    }
 
-    static void Keydown(object sender, KeyEventArgs e)
-    {
-      if (e.Key.Equals(Key.Enter))
-        (sender as UIElement)?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-    }
+	    static void tabOnEnterKeyUp(object sender, KeyEventArgs e)
+		{
+		    if (e.Key.Equals(Key.Enter))
+		    {
+		        e.Handled = true;
+		        (sender as UIElement)?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+		    }
+		}
 ```
