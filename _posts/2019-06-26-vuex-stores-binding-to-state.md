@@ -10,7 +10,7 @@ One particularly onerous item was the App.vue.  It was hooking into the lifecycl
 This originally looked like this:
 
 ```js
-export default {
+// export default {
   data() {
     return {
       currentUser: this.oidcUser,
@@ -23,13 +23,6 @@ export default {
     userLoaded: function(e) {
       this.currentUser = this.oidcUser || e.detail.profile;
     },
-    ...mapActions("oidcStore", ["signOutOidc"]),
-    logout() {
-      try {
-        this.currentUser = null;
-        this.signOutOidc();
-      } catch {}
-    }
   },
   mounted() {
     window.addEventListener("vuexoidc:userLoaded", this.userLoaded);
@@ -37,27 +30,21 @@ export default {
   destroyed() {
     window.removeEventListener("vuexoidc:userLoaded", this.userLoaded);
   }
-};
+// };
 ```
 
 Converted to Typescript it looked like
 ```typescript
-@Component(<ComponentOptions<App>>{
-     name: "App"
-})
-export default class App extends Vue {
-    //computed property - gets refreshed with oidcStore.user is changed
+// @Component(<ComponentOptions<App>>{
+//      name: "App"
+// })
+// export default class App extends Vue {
+
     get currentUser() {
-        return this.$store.state.oidcStore.user;
+        return this.$store.state.oidcStore.user; //computed property - gets refreshed with oidcStore.user is changed
     }
-
-    logout() {
-      try {
-        this.$store.dispatch('oidcStore/signOutOidc');
-      } catch {}
-    }
-}
-
+    
+// }
 ```
 
 The big pieces to catch are -
