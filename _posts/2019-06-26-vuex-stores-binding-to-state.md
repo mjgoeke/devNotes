@@ -14,17 +14,10 @@ export default {
   data() {
     return {
       currentUser: this.oidcUser,
-      siteinfo: siteinfo,
-      access: { admin: true },
-      installBtn: "none",
-      compact: true
     };
   },
   computed: {
-    ...mapGetters("oidcStore", ["oidcIsAuthenticated", "oidcUser"]),
-    hasAccess: function() {
-      return this.oidcIsAuthenticated;
-    }
+    ...mapGetters("oidcStore", ["oidcUser"]),
   },
   methods: {
     userLoaded: function(e) {
@@ -55,16 +48,9 @@ Converted to Typescript it looked like
 })
 export default class App extends Vue {
     //computed property - gets refreshed with oidcStore.user is changed
-    get currentUser() : {sub: string} {
+    get currentUser() {
         return this.$store.state.oidcStore.user;
     }
-
-    siteinfo = { title: "my app title", helpurl: "/#/HELP" };
-    access = { admin: true };
-    installBtn = "none";
-    compact = true;
-    
-    hasAccess = () => this.$store.state.oidcStore.is_checked;
 
     logout() {
       try {
