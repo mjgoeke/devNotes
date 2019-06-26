@@ -38,7 +38,6 @@ export default {
     window.removeEventListener("vuexoidc:userLoaded", this.userLoaded);
   }
 };
-</script>
 ```
 
 Converted to Typescript it looked like
