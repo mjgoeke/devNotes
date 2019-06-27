@@ -1,6 +1,15 @@
+# devNotes
+
+This is my personal blog of interesting code related improvements I run into in the course of my work.  
+It's based off the github pages template repo.  
+The default repo notes are below.
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+----------------------------------------------------------------
+
 ## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/mjgoeke/devNotes/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+You can use the [editor on GitHub](https://github.com/mjgoeke/devNotes/edit/master/readme.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
