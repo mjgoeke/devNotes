@@ -14,6 +14,7 @@ This originally looked like this:
   data() {
     return {
       currentUser: this.oidcUser,
+      // more state...
     };
   },
   computed: {
@@ -23,6 +24,7 @@ This originally looked like this:
     userLoaded: function(e) {
       this.currentUser = this.oidcUser || e.detail.profile;
     },
+    // more mappings, more methods...
   },
   mounted() {
     window.addEventListener("vuexoidc:userLoaded", this.userLoaded);
@@ -30,6 +32,8 @@ This originally looked like this:
   destroyed() {
     window.removeEventListener("vuexoidc:userLoaded", this.userLoaded);
   }
+  
+// lots more stuff...
 // };
 ```
 
@@ -39,16 +43,17 @@ Converted to Typescript it looked like
 //      name: "App"
 // })
 // export default class App extends Vue {
-
     get currentUser() {
         return this.$store.state.oidcStore.user; //computed property - gets refreshed with oidcStore.user is changed
     }
-    
+
+// more state...
+// more actions...
 // }
 ```
 
 The big pieces to catch are -
-by using a <mark>Vuex store</mark> we're able to make `currentUser` a `computed property` that's bound to a vuex property.
+by using a **Vuex store** we're able to make `currentUser` a *computed property* that's bound to a *vuex property*.
 Property changed notification bubbles up from the vuex state through the computed property to the property - and the visual element is immediately updated.
 This removes all the complexity attaching and removing event listeners and tracking superfluous local state.
 Much cleaner.
