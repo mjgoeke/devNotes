@@ -1,3 +1,8 @@
+---
+layout: post
+title: Playwright live recorder
+---
+
 Recently I've been programming, helping the test team transition to a new Automated Testing framework.
 We're moving from Cypress to Playwright. Right away there are a lot of things I like!
 But our biggest pain points weren't fixed.
