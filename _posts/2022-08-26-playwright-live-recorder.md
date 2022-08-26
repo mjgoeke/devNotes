@@ -23,10 +23,10 @@ In the console I've exposed a method to pump code back to the test context to be
 
 
 So from the browser console, I ought to be able to type something like `PW_eval('page.playwrightThings')` and it would try to do it.
-Let's try... success!!
-[PW_eval](https://user-images.githubusercontent.com/11726379/186935193-102c392d-cd6a-43f4-84e2-965e7ba01b9b.gif)
+Let's try... success!
+![PW_eval](https://user-images.githubusercontent.com/11726379/186935193-102c392d-cd6a-43f4-84e2-965e7ba01b9b.gif)
 
-------
+<br/><br/><br/><br/>
 
 Next pain point. Figuring out those selectors is a pain. I wish I could find a recorder that was more configurable or programmatic about narrowing to more idiomatic testing code instead of throwaway recorder code.
 Couldn't find anything good out there.
