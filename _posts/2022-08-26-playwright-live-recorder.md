@@ -36,14 +36,14 @@ A couple days later, we have some event listeners for pressing key chords and mo
 This is using a lib called 'finder' to get css shortest-path. https://medv.io/finder/finder.js
 ![PW_recorder1](https://user-images.githubusercontent.com/11726379/186935360-44b54764-1948-409f-971f-043480a21b1d.gif)
 
-</br></br></br></br>
+<br/><br/><br/><br/>
 
 That's helpful, let's plumb those recorder/selector rules into more of a match=>code pairs.
 And let's make it easy to add the code to the test.
 Originally I output the test code lines to the Debug Console (vscode), but eventually was able to emit them directly into the test file.
 ![PW_recorder2](https://user-images.githubusercontent.com/11726379/186935702-0b2826f2-11e9-4865-bac2-032533cab8dc.gif)
 
-</br></br></br></br>
+<br/><br/><br/><br/>
 
 You may have noticed the PlaywrightRecorder.startLiveCoding got a second param... it's best to evaluate the code passed in not just in the NodeJS playwright testing context, but in the actual test function, so that locally scoped things are available.
 This did the trick!
@@ -52,7 +52,7 @@ You'll also notice a key combo to re-write and re-run the last executed statemen
 Great!
 ![PW_recorder3](https://user-images.githubusercontent.com/11726379/186935808-ffabb602-3cd4-4383-aca0-a8dd69daa2d0.gif)
 
-</br></br></br></br>
+<br/><br/><br/><br/>
 ## Recorder Rules
 So, how about those rules... I said they're configurable/programmatic. Let's take a look.
 
@@ -76,7 +76,7 @@ Let's detect which nth matching data-testid it is and return that.
 and here's a gif of that - I'm modifying the page to have one, then two elements with the same data-testid. At first it displays data-testid=d1, but once it's not unique it returns the object with { selector, nth } values. The output code handles both cases.
 ![PW_recorderRules4](https://user-images.githubusercontent.com/11726379/186936094-209b055a-1bf7-40a7-ac44-8d3b91b62548.gif)
 
-</br></br></br></br>
+<br/><br/><br/><br/>
 
 ## Debugging rules
 Speaking of bugfixes and improvements, the recorderRules code is debuggable right in your browser.
